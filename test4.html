@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>&nbsp</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+</head>
+<style>
+  body{
+    margin: 5px 5px;
+  }
+  button{
+    margin-left: 2%;
+  }
+  /*.table-bordered > tbody > tr > td
+  {
+    border:  1px solid #000000;
+  }*/
+  td{
+    border:  1px solid #000000;
+  }
+</style>
+<body>
+ <!--  <div
+  style="border-bottom: 1px solid black;font-size: 18px;font-weight: bold;margin: 0 0 10px 0;padding-bottom: 5px">
+  打卡次数异常信息查询
+</div> -->
+
+<h1 style="text-align: center;" id="title"></h1>
+  <h4 id="text"></h4>
+<table class="table" id="table" border="1" cellspacing="0" cellpadding="0" >
+  <thead>
+    <tr>
+      <td>序号</td>
+      <td>姓名</td>
+      <td>性别</td>
+      <td>身份证号码</td>
+      <td>户籍所在地</td>
+      <td>出生年月</td>
+      <td>联系方式</td>
+      <td>进场日期</td>
+      <td>退场日期</td>
+      <td>最后工资结清时间</td>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+
+  </tbody>
+
+</table>
+<div>
+ 
+<p class="row">
+  <span class="col-md-3">项目负责人： </span><span class="col-md-6">班组长： <span/><span class="col-md-9">劳务公司工地负责人： <span/> 
+</p>
+</div>
+
+
+
+
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<!-- <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script> -->
+<script src="js/plugins/sweetalert/sweetalert2.js"></script>
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+<!-- <script src="js/plugins/xlsx.mini.js"></script> -->
+<!-- <script src="js/plugins/exceljs.bare.js"></script> -->
+<!-- <script src="js/plugins/xlsx.core.min.js"></script> -->
+<!-- <script src="js/plugins/xlsx.full.min.js"></script> -->
+<!-- <script src="js/plugins/xlsx.js"></script> -->
+<!-- <script src="js/plugins/export.js"></script> -->
+<script src="js/js/publicUrl.js"></script>
+<script type="text/javascript">
+
+
+</script>
+<script type="text/javascript">
+   function preview(){
+                    bdhtml=window.document.body.innerHTML;//获取当前页的html代码
+                    sprnstr="<!--startprint-->";//设置打印开始区域
+                    eprnstr="<!--endprint-->";//设置打印结束区域
+                    prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
+                    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
+                    window.document.body.innerHTML=prnhtml;
+                    window.print();
+                    window.document.body.innerHTML=bdhtml;
+            }
+
+
+  var str=sessionStorage.getItem("workerData")    
+  console.log(str)      
+  var json=JSON.parse(str);
+  json=json.data;
+  $('#title').text(json.projectName+'工程'+json.year+'年农民工花名册')
+  $('#text').text('所属劳务公司:'+json.corpName+'  班组：'+json.teamName+'报送日期:  '+json.sendDate)
+  $.each(json.dataList, function(index, item) {
+    console.log(json.dataList[index]);
+    $("#tableBody").append('<tr><td>'+(index+1)+'</td><td>'+item.workerName+'</td><td>'+item.gender+'</td><td>'+item.idCardNumber+'</td><td>'+item.address+'</td><td>'+item.birth+'</td><td>'+item.cellPhone+'</td><td>'+item.inTime+'</td><td>'+item.outTime+'</td><td></td></tr>')
+  });
+
+
+  // window.print();
+  preview();
+
+</script>
+
+</body>
+</html>

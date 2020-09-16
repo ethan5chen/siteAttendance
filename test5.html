@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>&nbsp</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+</head>
+<style>
+  body{
+    margin: 5px 5px;
+  }
+  button{
+    margin-left: 2%;
+  }
+  /*.table-bordered > tbody > tr > td
+  {
+    border:  1px solid #000000;
+    }*/
+    td{
+      border:  1px solid #000000;
+    }
+  </style>
+  <body>
+ <!--  <div
+  style="border-bottom: 1px solid black;font-size: 18px;font-weight: bold;margin: 0 0 10px 0;padding-bottom: 5px">
+  打卡次数异常信息查询
+</div> -->
+
+<h1 style="text-align: center;">月度农民工工资结算表 </h1>
+<h4 id="text">项目名称：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp班组：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp2020年9月</h4>
+<table class="table" id="table" border="1" cellspacing="0" cellpadding="0" >
+  <thead>
+    <tr>
+      <td>序号</td>
+      <td>姓名</td>
+      <td>身份证号码</td>
+      <td>联系电话</td>
+      <td>出勤天数</td>
+      <td>单价 元/日</td>
+      <td>本月总价</td>
+      <td colspan="2">工人签字（摁手印）</td>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+
+  </tbody>
+
+</table>
+<div>
+  
+<p style="font-size: 17px;"class="row">
+  <span class="col-md-3">分包单位工地负责人： </span><span class="col-md-6">班组长： <span/><span class="col-md-9">项目负责人： <span/> 
+  </p>
+  <p>备注：本表需如实填报，工人签字栏必须为工人本人签字，填报时要留有影像。
+</p>
+</div>
+
+
+
+
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<!-- <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script> -->
+<script src="js/plugins/sweetalert/sweetalert2.js"></script>
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+<!-- <script src="js/plugins/xlsx.mini.js"></script> -->
+<!-- <script src="js/plugins/exceljs.bare.js"></script> -->
+<!-- <script src="js/plugins/xlsx.core.min.js"></script> -->
+<!-- <script src="js/plugins/xlsx.full.min.js"></script> -->
+<!-- <script src="js/plugins/xlsx.js"></script> -->
+<!-- <script src="js/plugins/export.js"></script> -->
+<script src="js/js/publicUrl.js"></script>
+<script type="text/javascript">
+
+
+</script>
+<script type="text/javascript">
+ function preview(){
+  bdhtml=window.document.body.innerHTML;
+  sprnstr="<!--startprint-->";
+  eprnstr="<!--endprint-->";
+  prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); 
+  prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+  window.document.body.innerHTML=prnhtml;
+  window.print();
+  window.document.body.innerHTML=bdhtml;
+}
+
+
+var str=sessionStorage.getItem("WagesData")   
+console.log(str)      
+var json=JSON.parse(str);
+var dateArray=json.date.split('-');
+$('#text').text('项目名称：'+json.productName+'   班组：'+json.teamName+'  '+dateArray[0]+'年'+dateArray[1]+'月')
+$.each(json.data, function(index, item) {
+  console.log(json.data[index]);
+  if(index%2==0&&index!=(json.data.length-1)){
+    $("#tableBody").append('<tr><td>'+(index+1)+'</td><td>'+item.workerName+'</td><td>'+item.idCardNumber+'</td><td>'+item.cellPhone+'</td><td>'+item.days+'</td><td>'+item.unitPrice+'</td><td>'+item.wages+'</td><td rowspan="2"></td><td rowspan="2"></td></tr>')
+  }else if(index%2==0&&index==(json.data.length-1)){
+    $("#tableBody").append('<tr><td>'+(index+1)+'</td><td>'+item.workerName+'</td><td>'+item.idCardNumber+'</td><td>'+item.cellPhone+'</td><td>'+item.days+'</td><td>'+item.unitPrice+'</td><td>'+item.wages+'</td><td></td><td></td></tr>')
+  }else{
+    $("#tableBody").append('<tr><td>'+(index+1)+'</td><td>'+item.workerName+'</td><td>'+item.idCardNumber+'</td><td>'+item.cellPhone+'</td><td>'+item.days+'</td><td>'+item.unitPrice+'</td><td>'+item.wages+'</td></tr>')
+  }
+
+});
+
+
+  // window.print();
+  preview();
+
+</script>
+
+</body>
+</html>

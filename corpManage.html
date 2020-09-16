@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>企业管理</title>
+	<link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+	<link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+	<link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+</head>
+<style>
+	body{
+		margin: 10px 5px;
+	}
+	button{
+		margin-left: 2%;
+	}
+</style>
+<body>
+	<div  id="toolbar">
+		<div class=" form-inline">
+			<a type="button" class="btn btn-outline btn-default" data-toggle="modal" id="add-a">
+				<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+			</a>
+      <!-- <input type="text"   class="form-control"placeholder="搜索" id="search-input">
+      	<input type="button" value="搜索"  class="btn btn-primary" id="searchButton">  -->
+      </div>
+    </div>
+    <table id="table">
+
+    </table>
+    <div id="addModal" class="modal fade " aria-hidden="true">
+     <div class="modal-dialog">
+      <div class="modal-content">
+       <div class="modal-body">
+        <div class="row">
+         <h3 class="m-t-none m-b">新建</h3>
+         <form id="addForm" role="form">
+          <div class="form-group">
+           <label>社会信用代码：</label>
+           <input id="corpCode" type="text" name="corpCode" placeholder="请输入" class="form-control" required>
+         </div>
+         <div class="form-group">
+           <label>企业名称：</label>
+           <input id="corpName" type="text" name="corpName" placeholder="请输入" class="form-control" required>
+         </div>
+         <div class="form-group">
+           <label>企业性质：</label>
+           <select name="corpType" id="corpType" class="form-control" >
+            <option value="">请选择</option>
+            <option value="内资企业">内资企业</option>
+            <option value="国有企业">国有企业</option>
+            <option value="集体企业">集体企业</option>
+            <option value="股份合作企业">股份合作企业</option>
+            <option value="联营企业">联营企业</option>
+            <option value="国有联营企业">国有联营企业</option>
+            <option value="集体联营企业">集体联营企业</option>
+            <option value="国有与集体联营企业">国有与集体联营企业</option>
+            <option value="其他联营企业">其他联营企业</option>
+            <option value="有限责任公司">有限责任公司</option>
+            <option value="国有独资公司">国有独资公司</option>
+            <option value="其他有限责任公司">其他有限责任公司</option>
+            <option value="股份有限公司">股份有限公司</option>
+            <option value="私营企业">私营企业</option>
+            <option value="私营独资企业">私营独资企业</option>
+            <option value="私营合伙企业">私营合伙企业</option>
+            <option value="私营有限责任公司">私营有限责任公司</option>
+            <option value="私营股份有限公司">私营股份有限公司</option>
+            <option value="其他企业">其他企业</option>
+            <option value="港、澳、台商投资企业">港、澳、台商投资企业</option>
+            <option value="合资经营企业（港或澳、台资）">合资经营企业（港或澳、台资）</option>
+            <option value="合作经营企业（港或澳、台资）">合作经营企业（港或澳、台资）</option>
+            <option value="港、澳、台商独资经营企业">港、澳、台商独资经营企业</option>
+            <option value="港、澳、台商投资股份有限公司 ">港、澳、台商投资股份有限公司 </option>
+            <option value="其他港、澳、台商投资企业">其他港、澳、台商投资企业</option>
+            <option value="外商投资企业">外商投资企业</option>
+            <option value="中外合资经营企业">中外合资经营企业</option>
+            <option value="中外合作经营企业">中外合作经营企业</option>
+            <option value="外资企业">外资企业</option>
+            <option value="外商投资股份有限公司">外商投资股份有限公司</option>
+            <option value="其他外商投资企业">其他外商投资企业</option>
+            <option value="军队单位">军队单位</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>企业注册地：</label>
+          <input id="corpAddress" type="text" name="corpAddress" placeholder="请输入" class="form-control" required>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button" id="submit"><strong>提交</strong></button>
+          <button class="btn btn-sm btn-white pull-right m-t-n-xs" type="button" data-toggle="modal" data-target="#addModal" ><strong>取消</strong></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<script src="js/plugins/sweetalert/sweetalert2.js"></script>
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+<script src="js/js/publicUrl.js"></script>
+<script src="js/js/corpManage.js"></script>
+
+
+</body>
+</html>

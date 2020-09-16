@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>关联工人列表</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+</head>
+<style>
+  body {
+    margin: 10px 5px;
+  }
+
+  button {
+    margin-left: 2%;
+  }
+
+  .table-bordered>tbody>tr>td {
+    border: 1px solid #ffffff00;
+  }
+</style>
+
+<body>
+  <div id="toolbar">
+    <div class=" form-inline">
+      <div class=" form-group">
+        <label>项目：</label>
+        <select name="projectName" id="projectName" class="form-control" >
+          <option>请选择</option>
+        </select>
+      </div>
+      <div class=" form-group">
+        <label>班组：</label>
+        <select name="teamName" id="teamName" class="form-control" >
+          <option>请选择</option>
+        </select>
+      </div>
+      <div class=" form-group">
+        <label>姓名：</label>
+        <input type="text" class="form-control" placeholder="姓名" id="workName">
+      </div>
+      <input type="button" value="查询" class="btn btn-primary" id="searchButton">
+    </div>
+  </div>
+  <table id="table">
+
+  </table>
+  <div id="setLinkModal" class="modal fade " aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <h3 class="m-t-none m-b">设置关联工人</h3>
+            <form id="addForm" role="form">
+              <!-- <div class="form-group">
+                <label>选择项目：</label>
+                <select id="projectName" type="text" placeholder="" class="form-control">
+        
+                </select>
+              </div>
+              <div class="form-group">
+                <label>选择班组：</label>
+                <select id="team" type="text" placeholder="" class="form-control" disabled="true">
+        
+                </select>
+              </div> -->
+              <div class="form-group">
+                <label>选择工人：</label>
+                <select id="worker" name="woker" class="form-control" required >
+                </select>
+              </div>
+              <!-- <div class="form-group">
+                <div class="col-sm-11">
+                  <button type="button" id="query" class="btn btn-block btn-outline btn-primary">查询</button>
+                </div>
+              </div>
+              <div>
+                <div class="col-sm-11">
+                  <label></label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="district_select">关联工人选择：</label>
+                <div class="panel panel-info" id="district">
+                  <div class="panel-heading">
+
+                  </div>
+                  <div class="panel-body">
+                    <select name="district_select" id="district_select" class="form-control" multiple disabled>
+                    </select>
+                  </div>
+                </div>
+              </div> -->
+
+              <div>
+                <button id='setLink-confirm' class="btn btn-sm btn-primary pull-right m-t-n-xs"
+                  type="button"><strong>提交</strong></button>
+                <button class="btn btn-sm btn-white pull-right m-t-n-xs" type="button" data-toggle="modal"
+                  data-target="#setLinkModal"><strong>取消</strong></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <script src="js/jquery.min.js?v=2.1.4"></script>
+  <script src="js/bootstrap.min.js?v=3.3.6"></script>
+  <script src="js/bootstrap-table.js"></script>
+  <script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+  <script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+  <script src="js/plugins/sweetalert/sweetalert2.js"></script>
+  <script src="js/plugins/validate/jquery.validate.min.js"></script>
+  <script src="js/plugins/validate/messages_zh.min.js"></script>
+  <script src="js/public/publicURL.js"></script>
+  <script src="js/js/linkWorker.js"></script>
+
+
+</body>
+
+</html>

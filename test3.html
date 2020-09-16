@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>&nbsp</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+</head>
+<style>
+  body{
+    margin: 5px 5px;
+  }
+  button{
+    margin-left: 2%;
+  }
+  /*.table-bordered > tbody > tr > td
+  {
+    border:  1px solid #000000;
+    }*/
+    td{
+      border:  1px solid #000000;
+    }
+  </style>
+  <body>
+ <!--  <div
+  style="border-bottom: 1px solid black;font-size: 18px;font-weight: bold;margin: 0 0 10px 0;padding-bottom: 5px">
+  打卡次数异常信息查询
+</div> -->
+
+<h1 id="title" style="text-align: center;">XXXXXXX项目2019年月份农民工工资银行代发信息汇总表</h1>
+
+<div >
+  <p id="text"style="text-indent:25px;">
+    本人承诺：以下人员信息已核对无误，真实有效。确实为我XXXXXXXXX项目现场务工人员，不存在非现场务工人员。本次发放工资总人数：2人；应发工资总额：19730.00元，实发工资总额：18914.00元，其中：个税总额816.00元。特此承诺:本人愿意承担不实信息引发的一切后果，并承担一切责任。     
+  </p>
+  <p  class="row">
+    <span class="col-md-4">承诺人（班组长）：</span>   
+    <span class="col-md-4">承诺日期： &nbsp&nbsp&nbsp   年 &nbsp&nbsp&nbsp   月 &nbsp&nbsp&nbsp   日</span>
+    <span class="col-md-4">劳务公司审核： </span>
+  </p>
+  <p class="row">
+    <span id="corpName"id="" class="col-md-6">公司名称：厦门市建安集团有限公司</span>   
+    <span id="" class="col-md-3">工资支付周期：   每月  25  日</span>
+  </p>
+   <p class="row">
+    <span id="productName" class="col-md-6">项目名称：   XXXXXXXXX    </span>   
+    <span id="teamName" class="col-md-2">施工班组：  </span>
+    <span id="date" class="col-md-2">所属月份：  2019年11月</span>
+    <span id="" class="col-md-2">制表日期：</span>
+  </p>
+</div>
+<table class="table" id="table" border="1" cellspacing="0" cellpadding="0" >
+  <thead>
+    <tr>
+      <td rowspan="2">序号</td>
+      <td rowspan="2">工号</td>
+      <td rowspan="2">姓名</td>
+      <td rowspan="2">身份证号码</td>
+      <td rowspan="2">银行卡号</td>
+      <td rowspan="2">开户行</td>
+      <td rowspan="2">日工资或计件工资</td>
+      <td rowspan="2">工日或计件量</td>
+      <td rowspan="2">其他补贴</td>
+      <td rowspan="2">高温津贴</td>
+      <td id="" style="white-space:pre;"colspan="3">工资支付情况（单位：元）  </td>
+      <td rowspan="2">联系方式</td>
+      <td rowspan="2">签名</td>
+      <td rowspan="2">备注</td>
+    </tr>
+    <tr>
+      <td>应发工资</td>
+      <td>个人所得税</td>
+      <td>实发工资</td>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+
+  </tbody>
+
+</table>
+
+
+
+
+
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<!-- <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script> -->
+<script src="js/plugins/sweetalert/sweetalert2.js"></script>
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+<!-- <script src="js/plugins/xlsx.mini.js"></script> -->
+<!-- <script src="js/plugins/exceljs.bare.js"></script> -->
+<!-- <script src="js/plugins/xlsx.core.min.js"></script> -->
+<!-- <script src="js/plugins/xlsx.full.min.js"></script> -->
+<!-- <script src="js/plugins/xlsx.js"></script> -->
+<!-- <script src="js/plugins/export.js"></script> -->
+<script src="js/js/publicUrl.js"></script>
+<script type="text/javascript">
+
+
+</script>
+<script type="text/javascript">
+ function preview(){
+                    bdhtml=window.document.body.innerHTML;//获取当前页的html代码
+                    sprnstr="<!--startprint-->";//设置打印开始区域
+                    eprnstr="<!--endprint-->";//设置打印结束区域
+                    prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
+                    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
+                    window.document.body.innerHTML=prnhtml;
+                    window.print();
+                    window.document.body.innerHTML=bdhtml;
+                  }
+                  function eachArray(array){
+                    var AllWages=0;
+                    $.each(array, function(index, item) {
+                      AllWages+=parseInt(item.wages)
+                    });
+                    return AllWages;
+                  }
+
+                  var str=sessionStorage.getItem("timeCountStaData")    
+                  var json=JSON.parse(str);
+                  
+                  var dateArray=json.date.split('-');
+                  console.log(json) 
+                  $("#title").text(json.productName+'项目'+dateArray[0]+'年'+dateArray[1]+'月份农民工工资银行代发信息汇总表')
+                  $("#text").text('本人承诺：以下人员信息已核对无误，真实有效。确实为我'+json.productName+'项目现场务工人员，不存在非现场务工人员。本次发放工资总人数：'+json.count+'人；应发工资总额：'+eachArray(json.data)+'.00元，实发工资总额：'+eachArray(json.data)+'.00元，其中：个税总额0.00元。特此承诺:本人愿意承担不实信息引发的一切后果，并承担一切责任。')
+                  $("#corpName").text('公司名称：'+json.data[0].cropName)
+                  $("#productName").text('施工班组：'+json.productName)
+                  $("#teamName").text('项目名称：'+json.teamName)
+                  $("#date").text(dateArray[0]+'年'+dateArray[1]+'月份')
+                  $.each(json.data, function(index, item) {
+                    console.log(json.data[index]);
+                    $("#tableBody").append('<tr><td>'+(index+1)+'</td><td>'+item.id+'</td><td>'+item.workerName+'</td><td>'+item.idCardNumber+'</td><td>'+item.bankNum+'</td><td>'+item.bankName+'</td><td>'+item.unitPrice+'</td><td>'+item.days+'</td><td></td><td>'+item.temAllowance+'</td><td>'+item.wages+'</td><td>0.00</td><td>'+item.wages+'</td><td>'+item.cellPhone+'</td><td></td><td></td></tr>')
+                  });
+
+
+  // window.print();
+  preview();
+
+</script>
+
+</body>
+</html>

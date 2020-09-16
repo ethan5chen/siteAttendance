@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>工人管理</title>
+	<link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+	<link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+	<link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+</head>
+<style>
+	body{
+		margin: 10px 5px;
+	}
+	button{
+		margin-left: 2%;
+	}
+</style>
+<body>
+	<div  id="toolbar">
+    <div class="form-inline">
+      <div class=" form-group">
+        <label>项目：</label>
+        <select name="projectName" id="projectName" class="form-control" >
+        </select>
+      </div>
+      <div class=" form-group">
+        <label>班组：</label>
+        <select name="teamName" id="teamName" class="form-control" >
+        </select>
+      </div>
+      <div class=" form-group">
+        <label>工种：</label>
+        <select name="workType" id="workType" class="form-control" >
+          <option value=''>请选择</option>
+          <option value='010'>砌筑工 </option>
+          <option value='020'>钢筋工 </option>
+          <option value='030'>架子工</option>
+          <option value='040'>混凝土工  </option>
+          <option value='050'>模板工  </option>
+          <option value='060'>机械设备安装工 </option>
+          <option value='070'>通风工  </option>
+          <option value='080'>安装起重工  </option>
+          <option value='090'>安装钳工 </option>
+          <option value='100'>电气设备安装调试工   </option>
+          <option value='110'>管道工   </option>
+          <option value='120'>变电安装工  </option>
+          <option value='130'>建筑电工  </option>
+          <option value='140'>司泵工  </option>
+          <option value='150'>挖掘铲运和桩工机械司机 </option>
+          <option value='160'>桩机操作工   </option>
+          <option value='170'>起重信号工   </option>
+          <option value='180'>建筑起重机械安装拆卸工  </option>
+          <option value='190'>装饰装修工   </option>
+          <option value='200'>室内成套设施安装工   </option>
+          <option value='210'>建筑门窗幕墙安装工  </option>
+          <option value='220'>幕墙制作工    </option>
+          <option value='230'>防水工    </option>
+          <option value='240'>木工   </option>
+          <option value='250'>石工    </option>
+          <option value='270'>电焊工   </option>
+          <option value='280'>爆破工     </option>
+          <option value='290'>除尘工    </option>
+          <option value='300'>测量放线工     </option>
+          <option value='310'>线路架设工    </option>
+          <option value='320'>古建筑传统石工     </option>
+          <option value='330'>古建筑传统瓦工   </option>
+          <option value='340'>古建筑传统彩画工    </option>
+          <option value='350'>古建筑传统木工      </option>
+          <option value='360'>古建筑传统油工     </option>
+          <option value='380'>金属工      </option>
+          <option value='900'>管理人员    </option>
+          <option value='390'>杂工     </option>
+          <option value='1000'>其它  </option>
+        </select>
+        <input type="button" value="搜索"  class="btn btn-primary" id="searchButton">
+        <input type="button" value="导出花名册"  class="btn btn-primary" id="exportName">
+        <input type="button" value="导出银行卡"  class="btn btn-primary" id="exportBankCard"> 
+      </div>
+    </div>
+  </div>
+  <table id="table">
+
+  </table>
+  
+  <div id="upContract" class="modal fade " aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <h3 class="m-t-none m-b">上传合同</h3>
+            <form id="updateForm" role="form">
+              <div class="form-group">
+                <label>项目名称：</label>
+                <input id="upProjectName" type="text" name="upProjectName" placeholder="请输入" class="form-control" required disabled>
+              </div>
+              <div class="form-group">
+               <label>企业名称：</label>
+               <input id="upCorpCode" type="text" name="upCorpCode" placeholder="请输入" class="form-control" required disabled>
+             </div>
+             <div class="form-group">
+               <label>班组名称：</label>
+               <input id="upTeamName" type="text" name="upTeamName" placeholder="请输入" class="form-control" required disabled>
+             </div>
+             <div class="form-group">
+               <label>工人姓名：</label>
+               <input id="upWorkerName" type="text" name="upWorkerName" placeholder="请输入" class="form-control" required disabled>
+             </div>
+             <div class="form-group">
+              <label>工人证件号：</label>
+              <input id="upWorkerIDCardNumber" type="text" name="upWorkerIDCardNumber" placeholder="请输入" class="form-control" required disabled>
+            </div>
+            <div class="form-group">
+              <label>合同期限类型：</label>
+              <select name="contractPeriodType" id="contractPeriodType" class="form-control" >
+                <option value="0">固定期限合同</option>
+                <option value="1">以完成一定工作为期限的合同</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>生效日期：</label>
+              <input id="startDate" type="date"class="laydate-icon form-control layer-date">
+            </div>
+            <div class="form-group">
+              <label>失效日期：</label>
+              <input id="endDate" type="date"class="laydate-icon form-control layer-date">
+            </div>
+            <div class="form-group">
+              <label>附件1：</label>
+              <input id="AttachmentOne"  type="file" name="AttachmentOne" required>
+            </div>
+            <div class="form-group">
+              <label>附件2：</label>
+              <input id="AttachmentTwo"  type="file" name="AttachmentTwo" required>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button" id="edit-save-button"><strong>提交</strong></button>
+              <button class="btn btn-sm btn-white pull-right m-t-n-xs" type="button" data-toggle="modal" data-target="#upContract" ><strong>取消</strong></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<script src="js/plugins/sweetalert/sweetalert2.js"></script>
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+<script src="js/js/publicUrl.js"></script>
+<script src="js/js/workerManage.js"></script>
+
+
+</body>
+</html>

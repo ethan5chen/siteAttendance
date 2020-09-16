@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>&nbsp</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+</head>
+<style>
+  body{
+    margin: 5px 5px;
+  }
+  button{
+    margin-left: 2%;
+  }
+  /*.table-bordered > tbody > tr > td
+  {
+    border:  1px solid #000000;
+    }*/
+    td{
+      border:  1px solid #000000;
+    }
+  </style>
+  <body>
+ <!--  <div
+  style="border-bottom: 1px solid black;font-size: 18px;font-weight: bold;margin: 0 0 10px 0;padding-bottom: 5px">
+  打卡次数异常信息查询
+</div> -->
+<!--startprint-->
+<h1 style="text-align: center;">考勤表</h1>
+<!-- <h4>项目名称：双子楼&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp用人单位：单位1&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp班组：默认班组&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp2020年9月</h4> -->
+
+<div style="font-size: 20px;">
+  <p  class="row">
+    <span id="contractors" class="col-md-4">施工单位：XXXXXXXXXXXXXXXXXXXXXX</span>   
+    <span id="corpName" class="col-md-4">劳务单位：XXXXXXXXXXXXXXXXXXXXXX</span>
+  </p>
+  <p class="row">
+    <span id="productName" class="col-md-6">项目名称：XXXXXXXXXXXXXXXXXXXXXXXXXXX</span>   
+    <span id="teamName" class="col-md-3">班组：       班组</span>
+    <span id="date"class="col-md-3">时间：       年      月份</span>
+    
+    </p>
+  </div>
+  <table class="table" id="table" border="1" cellspacing="0" cellpadding="0" >
+    <thead>
+      <tr>
+        <td rowspan="2">序号</td>
+        <td rowspan="2">编号</td>
+        <td rowspan="2">姓名</td>
+        <td rowspan="2">1</td>
+        <td rowspan="2">2</td>
+        <td rowspan="2">3</td>
+        <td rowspan="2">4</td>
+        <td rowspan="2">5</td>
+        <td rowspan="2">6</td>
+        <td rowspan="2">7</td>
+        <td rowspan="2">8</td>
+        <td rowspan="2">9</td>
+        <td rowspan="2">10</td>
+        <td rowspan="2">11</td>
+        <td rowspan="2">12</td>
+        <td rowspan="2">13</td>
+        <td rowspan="2">14</td>
+        <td rowspan="2">15</td>
+        <td rowspan="2">16</td>
+        <td rowspan="2">17</td>
+        <td rowspan="2">18</td>
+        <td rowspan="2">19</td>
+        <td rowspan="2">20</td>
+        <td rowspan="2">21</td>
+        <td rowspan="2">22</td>
+        <td rowspan="2">23</td>
+        <td rowspan="2">24</td>
+        <td rowspan="2">25</td>
+        <td rowspan="2">26</td>
+        <td rowspan="2">27</td>
+        <td rowspan="2">28</td>
+        <td rowspan="2">29</td>
+        <td rowspan="2">30</td>
+        <td rowspan="2">31</td>
+        <td rowspan="2">天数</td>
+      </tr>
+      
+    </thead>
+    <tbody id="tableBody">
+
+    </tbody>
+
+  </table>
+  <!-- <div>&nbsp</div> -->
+<!-- <div>
+  <table style="width: 25%"class="table" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+      <td rowspan="2">代号</td>
+      <td>全天</td>
+      <td>加班</td>
+      <td>休息</td>
+      <td>半天</td>
+    </tr>
+    <tr>
+      <td>√</td>
+      <td>＋</td>
+      <td>0</td>
+      <td>Φ</td>
+    </tr>
+  </table>
+</div> -->
+
+
+
+<!--endprint-->
+
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/plugins/sweetalert/sweetalert2.js"></script>
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+<script src="js/js/publicUrl.js"></script>
+<script type="text/javascript">
+
+
+</script>
+<script type="text/javascript">
+  function preview(){
+                    bdhtml=window.document.body.innerHTML;//获取当前页的html代码
+                    sprnstr="<!--startprint-->";//设置打印开始区域
+                    eprnstr="<!--endprint-->";//设置打印结束区域
+                    prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
+                    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
+                    window.document.body.innerHTML=prnhtml;
+                    window.print();
+                    window.document.body.innerHTML=bdhtml;
+                  }
+
+                  function strToMap(data){
+                    var map=new Map();
+                    var array=data.split(",")
+                    $.each(array, function(index, item) {
+                      var a=item.split(':');
+                      map[a[0]]=a[1];
+                    });
+                    return map;
+                  }
+
+                  var str=sessionStorage.getItem("clockCountData")
+                  var json=JSON.parse(str);
+                  console.log(json)
+                  var dateArray=json.date.split('-');
+                  $('#contractors').text('施工单位：'+json.data.contractors)
+                  $('#corpName').text('劳务单位：'+json.data.corpName)
+                  $('#productName').text('项目名称：'+json.productName)
+                  $('#teamName').text('班组： '+json.teamName)
+                  $('#date').text('日期： '+dateArray[0]+'年 '+dateArray[1]+'月份')
+
+                  console.log(json.data);
+                  $.each(json.data.list, function(index, item) {
+                    console.log(item.dateList);
+                    var map=strToMap(item.dateList);
+                    var str='<tr><td>'+(index+1)+'</td><td>'+item.id+'</td><td>'+item.workerName+'</td>'
+                    for(var i=1;i<=31;i++){
+                      str+='<td>'+(map[i.toString()]==undefined?"":"√")+'</td>';
+                    }
+                    str+='<td>'+item.days+'</td></tr>'
+                    $("#tableBody").append(str)
+                  });
+
+                  preview();
+  // window.print();
+
+</script>
+
+</body>
+</html>

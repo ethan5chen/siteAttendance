@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>自动打卡项目列表</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+</head>
+<style>
+  body {
+    margin: 10px 5px;
+  }
+
+  button {
+    margin-left: 2%;
+  }
+</style>
+
+<body>
+  <!-- <div id="toolbar">
+    <div class=" form-inline">
+      <a type="button" class="btn btn-outline btn-default setWorker" data-toggle="setWorkerModal" id="setWorkerButton">
+        <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div> -->
+  <table id="table">
+
+  </table>
+  <div id="setStatusModal" class="modal fade " aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <h3 class="m-t-none m-b">设置自动打卡状态</h3>
+            <form id="addForm" role="form">
+              <div class="form-group">
+                <label>项目名称：</label>
+                <input class="project1" style="border:0;outline:0;" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label>状态：</label>
+                <input type="radio"  name="status" required value="1"><label>打开</label>
+                <input type="radio"  name="status" required value="0"><label>关闭</label>
+              </div>
+              <div class="form-group">
+                <label>开始时间：</label>
+                <select id="signIn_time" type="text" placeholder="" class="form-control">
+                  <option value='0'> 0:00</option>
+                  <option value='1'> 1:00</option>
+                  <option value='2'> 2:00</option>
+                  <option value='3'> 3:00</option>
+                  <option value='4'> 4:00</option>
+                  <option value='5'> 5:00</option>
+                  <option value='6'> 6:00</option>
+                  <option value='7'> 7:00</option>
+                  <option value='8'> 8:00</option>
+                  <option value='9'> 9:00</option>
+                  <option value='10'> 10:00</option>
+                  <option value='11'> 11:00</option>
+                  <option value='12'> 12:00</option>
+                  <option value='13'> 13:00</option>
+                  <option value='14'> 14:00</option>
+                  <option value='15'> 15:00</option>
+                  <option value='16'> 16:00</option>
+                  <option value='17'> 17:00</option>
+                  <option value='18'> 18:00</option>
+                  <option value='19'> 19:00</option>
+                  <option value='21'> 21:00</option>
+                  <option value='22'> 22:00</option>
+                  <option value='23'> 23:00</option>
+                </select>
+                <!-- <input type="text" class="form-control" id="signIn_time" placeholder="请选择时间段"> -->
+              </div>
+              <div class="form-group">
+                <label>结束时间：</label>
+                <select id="signOut_time" type="text" placeholder="" class="form-control">
+                  <option value='0'> 0:00</option>
+                  <option value='1'> 1:00</option>
+                  <option value='2'> 2:00</option>
+                  <option value='3'> 3:00</option>
+                  <option value='4'> 4:00</option>
+                  <option value='5'> 5:00</option>
+                  <option value='6'> 6:00</option>
+                  <option value='7'> 7:00</option>
+                  <option value='8'> 8:00</option>
+                  <option value='9'> 9:00</option>
+                  <option value='10'> 10:00</option>
+                  <option value='11'> 11:00</option>
+                  <option value='12'> 12:00</option>
+                  <option value='13'> 13:00</option>
+                  <option value='14'> 14:00</option>
+                  <option value='15'> 15:00</option>
+                  <option value='16'> 16:00</option>
+                  <option value='17'> 17:00</option>
+                  <option value='18'> 18:00</option>
+                  <option value='19'> 19:00</option>
+                  <option value='21'> 21:00</option>
+                  <option value='22'> 22:00</option>
+                  <option value='23'> 23:00</option>
+                </select>
+                <!-- <input type="text" class="form-control" id="signOut_time" placeholder="请选择时间段"> -->
+              </div>
+              <div>
+                <button id='setStatusConfirm' class="btn btn-sm btn-primary pull-right m-t-n-xs"
+                  type="button"><strong>提交</strong></button>
+                <button class="btn btn-sm btn-white pull-right m-t-n-xs" type="button" data-toggle="modal"
+                  data-target="#setStatusModal"><strong>取消</strong></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--修改自动打卡工人模态框-->
+  <div id="setWorkerModal" class="modal fade " aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">修改自动打卡工人</h4>
+        </div>
+        <div class="modal-body">
+          <h3 class="text-center" id="close-prompt"></h3>
+          <div class="form-group">
+            <label>项目名称：</label>
+            <input id="project2" class="form-control" style="border:0;outline:0;" readonly required>
+          </div>
+          <div class="form-group">
+            <label>选择班组：</label>
+            <select id="team" type="text" placeholder="" class="form-control">
+
+            </select>
+          </div>
+          <div class="col-md-5">
+            <div class="panel panel-info" id="district">
+              <div class="panel-heading">
+                <label for="worker">工人选择</label>
+              </div>
+              <div class="panel-body">
+                <select name="worker" id="worker" class="form-control" multiple >
+
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!--右移按钮-->
+            <!-- <div style="margin-top: 30px;"> -->
+            <button class="btn btn-lg btn-info btn-block" id="right_shift">
+              <span class="glyphicon glyphicon-arrow-right"></span>
+            </button>
+            <!-- </div> -->
+            <!--右移按钮-->
+            <!--左移按钮-->
+            <div style="margin-top: 30px;">
+              <button class="btn btn-lg btn-info btn-block" id="left_shift">
+                <span class="glyphicon glyphicon-arrow-left"></span>
+              </button>
+            </div>
+            <!--左移按钮-->
+          </div>
+          <!--已选择-->
+          <div class="col-md-5">
+            <div class="panel panel-success" id="selected">
+              <div class="panel-heading">
+                <label for="selected_selection">已选择</label>
+              </div>
+              <div class="panel-body">
+                <select name="selected_selection" id="selected_selection" class="form-control" multiple >
+
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" type="button" data-toggle="modal"
+              data-target="#setWorkerModal">取消</button>
+            <button type="button" class="btn btn-primary" id="setWorker-confirm">确定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <script src="js/jquery.min.js?v=2.1.4"></script>
+  <script src="js/bootstrap.min.js?v=3.3.6"></script>
+  <script src="js/bootstrap-table.js"></script>
+  <script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+  <script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+  <script src="js/plugins/sweetalert/sweetalert2.js"></script>
+  <script src="js/plugins/validate/jquery.validate.min.js"></script>
+  <script src="js/plugins/validate/messages_zh.min.js"></script>
+  <script src="js/laydate/laydate.js"></script>
+  <script src="js/public/publicURL.js"></script>
+  <script src="js/js/autoClock.js"></script>
+
+
+</body>
+
+</html>
